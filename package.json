@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "flow-bin": "0.61.0",
+    "flow-typed": "2.2.3"
+  },
+  "dependencies": {
+    "ramda": "0.25.0"
+  },
+  "name": "flow-ramda-curry-test",
+  "version": "0.1.0",
+  "description": "Test ramda's curry with Flow",
+  "main": "index.js",
+  "author": "Logan Barnett <logustus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "flow": "flow",
+    "flow-typed": "flow-typed"
+  }
+}
