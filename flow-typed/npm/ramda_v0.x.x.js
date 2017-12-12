@@ -28,135 +28,43 @@ declare module ramda {
     (value: any, key: string): boolean;
   }
 
-  declare type __CurriedFunction1<A, R, AA: A> = (...r: [AA]) => R;
-  declare type CurriedFunction1<A, R> = __CurriedFunction1<A, R, *>;
+  // declare type CurriedFunction1<A, R> = (A) => R;
+  // declare type CurriedFunction2<A, B, R> = ((A) => CurriedFunction1<B, R>) &
+  //   ((A, B) => R);
+  // declare type CurriedFunction3<A, B, C, R> =
+  //   ((A) => CurriedFunction2<B, C, R>) &
+  //   ((A, B) => CurriedFunction1<C, R>) &
+  //   ((A, B, C) => R);
+  // declare type CurriedFunction4<A, B, C, D, R> =
+  //   ((A) => CurriedFunction3<B, C, D, R>) &
+  //   ((A, B) => CurriedFunction2<C, D, R>) &
+  //   ((A, B, C) => CurriedFunction3<D, R>) &
+  //   ((A, B, C, D) => R);
 
-  declare type __CurriedFunction2<A, B, R, AA: A, BB: B> = ((
-    ...r: [AA]
-  ) => CurriedFunction1<BB, R>) &
-    ((...r: [AA, BB]) => R);
-  declare type CurriedFunction2<A, B, R> = __CurriedFunction2<A, B, R, *, *>;
+  // declare type Curry<A, B, C, D, R> = CurriedFunction1<A, R> & CurriedFunction2<A, B, R> & CurriedFunction3<A, B, C, R> & CurriedFunction4<A, B, C, D, R>
+  // declare var curry: Curry;
 
-  declare type __CurriedFunction3<A, B, C, R, AA: A, BB: B, CC: C> = ((
-    ...r: [AA]
-  ) => CurriedFunction2<BB, CC, R>) &
-    ((...r: [AA, BB]) => CurriedFunction1<CC, R>) &
-    ((...r: [AA, BB, CC]) => R);
-  declare type CurriedFunction3<A, B, C, R> = __CurriedFunction3<
-    A,
-    B,
-    C,
-    R,
-    *,
-    *,
-    *
-  >;
+  // declare function curry<A, R>(A): R;
+  // declare function curry<A, B, R>(A): curry<B, R>;
+  // declare function curry<A, B, R>(A, B): R;
+  // declare function curry<A, B, C, R>(A): curry<B, C, R>;
+  // declare function curry<A, B, C, R>(A, B): curry<C, R>;
+  // declare function curry<A, B, C, R>(A, B, C): R;
+  // declare function curry<A, B, C, D, R>(A): curry<B, C, D, R>;
+  // declare function curry<A, B, C, D, R>(A, B): curry<C, D, R>;
+  // declare function curry<A, B, C, D, R>(A, B, C): curry<D, R>;
+  // declare function curry<A, B, C, D, R>(A, B, C, D): R;
 
-  declare type __CurriedFunction4<
-    A,
-    B,
-    C,
-    D,
-    R,
-    AA: A,
-    BB: B,
-    CC: C,
-    DD: D
-  > = ((...r: [AA]) => CurriedFunction3<BB, CC, DD, R>) &
-    ((...r: [AA, BB]) => CurriedFunction2<CC, DD, R>) &
-    ((...r: [AA, BB, CC]) => CurriedFunction1<DD, R>) &
-    ((...r: [AA, BB, CC, DD]) => R);
-  declare type CurriedFunction4<A, B, C, D, R> = __CurriedFunction4<
-    A,
-    B,
-    C,
-    D,
-    R,
-    *,
-    *,
-    *,
-    *
-  >;
+  declare function curry<A, R>(A => R): A => R;
+  declare function curry<A, B, R>((A, B) => R): (curry<B, R> & (A, B) => R);
+  declare function curry<A, B, C, R>((A, B, C) => R): (curry<B, C, R> & (A, B, C) => R);
+  declare function curry<A, B, C, D, R>((A, B, C, D) => R): (curry<B, C, D, R> & (A, B, C, D) => R);
 
-  declare type __CurriedFunction5<
-    A,
-    B,
-    C,
-    D,
-    E,
-    R,
-    AA: A,
-    BB: B,
-    CC: C,
-    DD: D,
-    EE: E
-  > = ((...r: [AA]) => CurriedFunction4<BB, CC, DD, EE, R>) &
-    ((...r: [AA, BB]) => CurriedFunction3<CC, DD, EE, R>) &
-    ((...r: [AA, BB, CC]) => CurriedFunction2<DD, EE, R>) &
-    ((...r: [AA, BB, CC, DD]) => CurriedFunction1<EE, R>) &
-    ((...r: [AA, BB, CC, DD, EE]) => R);
-  declare type CurriedFunction5<A, B, C, D, E, R> = __CurriedFunction5<
-    A,
-    B,
-    C,
-    D,
-    E,
-    R,
-    *,
-    *,
-    *,
-    *,
-    *
-  >;
-
-  declare type __CurriedFunction6<
-    A,
-    B,
-    C,
-    D,
-    E,
-    F,
-    R,
-    AA: A,
-    BB: B,
-    CC: C,
-    DD: D,
-    EE: E,
-    FF: F
-  > = ((...r: [AA]) => CurriedFunction5<BB, CC, DD, EE, FF, R>) &
-    ((...r: [AA, BB]) => CurriedFunction4<CC, DD, EE, FF, R>) &
-    ((...r: [AA, BB, CC]) => CurriedFunction3<DD, EE, FF, R>) &
-    ((...r: [AA, BB, CC, DD]) => CurriedFunction2<EE, FF, R>) &
-    ((...r: [AA, BB, CC, DD, EE]) => CurriedFunction1<FF, R>) &
-    ((...r: [AA, BB, CC, DD, EE, FF]) => R);
-  declare type CurriedFunction6<A, B, C, D, E, F, R> = __CurriedFunction6<
-    A,
-    B,
-    C,
-    D,
-    E,
-    F,
-    R,
-    *,
-    *,
-    *,
-    *,
-    *,
-    *
-  >;
-
-  declare type Curry = (<A, R>((...r: [A]) => R) => CurriedFunction1<A, R>) &
-    (<A, B, R>((...r: [A, B]) => R) => CurriedFunction2<A, B, R>) &
-    (<A, B, C, R>((...r: [A, B, C]) => R) => CurriedFunction3<A, B, C, R>) &
-    (<A, B, C, D, R>(
-      (...r: [A, B, C, D]) => R
-    ) => CurriedFunction4<A, B, C, D, R>) &
-    (<A, B, C, D, E, R>(
-      (...r: [A, B, C, D, E]) => R
-    ) => CurriedFunction5<A, B, C, D, E, R>) &
-    (<A, B, C, D, E, F, R>(
-      (...r: [A, B, C, D, E, F]) => R
-    ) => CurriedFunction6<A, B, C, D, E, F, R>);
+  declare type CurriedFunction1<A, R> = curry<A, R>;
+  declare type CurriedFunction2<A, B, R> = curry<A, B, R>;
+  declare type CurriedFunction3<A, B, C, R> = curry<A, B, C, R>;
+  declare type CurriedFunction4<A, B, C, D, R> = curry<A, B, C, D, R>;
+  // declare var curry: CurriedFunction1 & CurriedFunction2 & CurriedFunction3 & CurriedFunction4;
 
   declare type Partial = (<A, R>((...r: [A]) => R, args: [A]) => () => R) &
     (<A, B, R>((...r: [A, B]) => R, args: [A]) => B => R) &
@@ -468,7 +376,6 @@ declare module ramda {
   declare var compose: Compose;
   declare var pipe: Pipe;
   declare var pipeP: PipeP;
-  declare var curry: Curry;
   declare function curryN(
     length: number,
     fn: (...args: Array<any>) => any
